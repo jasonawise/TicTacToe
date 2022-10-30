@@ -12,6 +12,7 @@
 		2CF7166F290F0DFD002F3061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF7166E290F0DFD002F3061 /* Assets.xcassets */; };
 		2CF71672290F0DFD002F3061 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF71671290F0DFD002F3061 /* Preview Assets.xcassets */; };
 		2CF71679290F0E32002F3061 /* SquareTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF71678290F0E32002F3061 /* SquareTileView.swift */; };
+		2CF7167B290F1EAF002F3061 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7167A290F1EAF002F3061 /* GlobalVars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2CF7166E290F0DFD002F3061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CF71671290F0DFD002F3061 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2CF71678290F0E32002F3061 /* SquareTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareTileView.swift; sourceTree = "<group>"; };
+		2CF7167A290F1EAF002F3061 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				2CF7166E290F0DFD002F3061 /* Assets.xcassets */,
 				2CF71670290F0DFD002F3061 /* Preview Content */,
 				2CF71678290F0E32002F3061 /* SquareTileView.swift */,
+				2CF7167A290F1EAF002F3061 /* GlobalVars.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF7167B290F1EAF002F3061 /* GlobalVars.swift in Sources */,
 				2CF7166D290F0DFB002F3061 /* ContentView.swift in Sources */,
 				2CF71679290F0E32002F3061 /* SquareTileView.swift in Sources */,
 				2CF7166B290F0DFB002F3061 /* TicTacToeApp.swift in Sources */,

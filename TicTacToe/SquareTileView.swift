@@ -12,12 +12,13 @@
 import SwiftUI
 
 struct SquareTileView: View {
-  @State private var squareStatus: String = "empty"
+    @ObservedObject var squareVars = GlobalVars()
+  
     var body: some View {
       Button(action: {
-        myAction()
+        toogleSquareStatus()
       }, label: {
-        Text(squareStatus == "playerOne" ? "X" : squareStatus == "playerTwo" ? "O" : " ")
+        Text(squareVars.squareStatus == "playerOne" ? "X" : squareVars.squareStatus == "playerTwo" ? "O" : " ")
           .font(.largeTitle)
           .bold()
           .foregroundColor(.black)
@@ -26,11 +27,27 @@ struct SquareTileView: View {
           .padding(4)
       })
     }
+  
+  func toogleSquareStatus() {
+    switch squareVars.squareStatus {
+    case "playerOne":
+      squareVars.squareStatus = "playerTwo"
+      return squareVars.currentPlayersTurn = "playerOne"
+    case "playerTwo":
+      squareVars.squareStatus = "playerOne"
+      return squareVars.currentPlayersTurn = "playerTwo"
+    case "empty":
+      if (squareVars.currentPlayersTurn == "playerOne") {
+        squareVars.squareStatus = squareVars.currentPlayersTurn
+        return squareVars.currentPlayersTurn = "playerTwo"
+      }
+    default:
+      squareVars.squareStatus = "empty"
+    }
+  }
 }
 
-func myAction() {
-  return print("I RAN")
-}
+
 
 struct SquareTileView_Previews: PreviewProvider {
     static var previews: some View {

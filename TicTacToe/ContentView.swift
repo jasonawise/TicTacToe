@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+  @StateObject var squareVars = GlobalVars()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+          SquareTileView()
+          Button("Reset Game", action: squareVars.resetGame)
+          HStack {
+            Section {
+              Text(squareVars.currentPlayersTurn)
+            } header: {
+              Text("Current Players Turn: ")
+            }
+          }
         }
         .padding()
     }
