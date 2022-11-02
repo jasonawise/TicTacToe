@@ -12,37 +12,43 @@
 import SwiftUI
 
 struct SquareTileView: View {
-    @ObservedObject var squareVars = GlobalVars()
+  @EnvironmentObject var squareVars: GlobalVars
+  @Binding var squareIndex: Int
   
     var body: some View {
       Button(action: {
         toogleSquareStatus()
       }, label: {
-        Text(squareVars.squareStatus == "playerOne" ? "X" : squareVars.squareStatus == "playerTwo" ? "O" : " ")
+//        Text(squareVars.data.squareStatus == "playerOne" ? "X" : squareVars.data.squareStatus == "playerTwo" ? "O" : " ")
+        Text("\(squareVars.gameBoardData.boardData[squareIndex].id)")
           .font(.largeTitle)
           .bold()
           .foregroundColor(.black)
           .frame(width: 70, height: 70)
           .background(Color.gray)
           .padding(4)
+          .cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
       })
     }
   
   func toogleSquareStatus() {
-    switch squareVars.squareStatus {
+    switch squareVars.data.squareStatus {
     case "playerOne":
-      squareVars.squareStatus = "playerTwo"
-      return squareVars.currentPlayersTurn = "playerOne"
+      squareVars.data.squareStatus = "playerTwo"
+      squareVars.data.currentPlayersTurn = "playerOne"
     case "playerTwo":
-      squareVars.squareStatus = "playerOne"
-      return squareVars.currentPlayersTurn = "playerTwo"
+      squareVars.data.squareStatus = "playerOne"
+      squareVars.data.currentPlayersTurn = "playerTwo"
     case "empty":
-      if (squareVars.currentPlayersTurn == "playerOne") {
-        squareVars.squareStatus = squareVars.currentPlayersTurn
-        return squareVars.currentPlayersTurn = "playerTwo"
+      print("empty case")
+      if (squareVars.data.currentPlayersTurn == "playerOne") {
+        squareVars.data.squareStatus = squareVars.data.currentPlayersTurn
+        squareVars.data.currentPlayersTurn = "playerTwo"
+      } else {
+        squareVars.data.squareStatus = "playerTwo"
       }
     default:
-      squareVars.squareStatus = "empty"
+      squareVars.data.squareStatus = "empty"
     }
   }
 }
@@ -51,6 +57,7 @@ struct SquareTileView: View {
 
 struct SquareTileView_Previews: PreviewProvider {
     static var previews: some View {
-        SquareTileView()
+      SquareTileView(squareIndex: .constant(4))
+//        .environmentObject(GlobalVars())
     }
 }

@@ -8,26 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
-  @StateObject var squareVars = GlobalVars()
-
-    var body: some View {
-        VStack {
-          SquareTileView()
-          Button("Reset Game", action: squareVars.resetGame)
-          HStack {
-            Section {
-              Text(squareVars.currentPlayersTurn)
-            } header: {
-              Text("Current Players Turn: ")
-            }
+  @EnvironmentObject var squareVars: GlobalVars
+  var body: some View {
+    VStack {
+      Grid {
+        ForEach(squareVars.gameBoardData.boardData.indices, id: \.self) { index in
+          GridRow {
+            SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
           }
+//          ForEach(0..<3) { _ in
+//            GridRow {
+//              ForEach(0..<3) { _ in
+//                SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
+//              }
+//            }
+//          }
         }
-        .padding()
+      }
+      Button("Reset Game", action: squareVars.resetGame)
+      HStack {
+        Section {
+          Text(squareVars.data.currentPlayersTurn)
+        } header: {
+          Text("Current Players Turn: ")
+        }
+      }
     }
+    .padding()
+  }
+  
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView().environmentObject(GlobalVars())
+  }
 }
