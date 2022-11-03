@@ -58,6 +58,6 @@ struct SquareTileView: View {
 struct SquareTileView_Previews: PreviewProvider {
     static var previews: some View {
       SquareTileView(squareIndex: .constant(4))
-//        .environmentObject(GlobalVars())
+        .environmentObject(GlobalVars())
     }
 }

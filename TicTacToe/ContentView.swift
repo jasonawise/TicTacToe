@@ -11,18 +11,35 @@ struct ContentView: View {
   @EnvironmentObject var squareVars: GlobalVars
   var body: some View {
     VStack {
-      Grid {
-        ForEach(squareVars.gameBoardData.boardData.indices, id: \.self) { index in
+      Grid() {
           GridRow {
-            SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
+            ForEach(squareVars.gameBoardData.boardData.indices, id: \.self) { index in
+              if index < 3 {
+                ForEach(0..<1) { _ in
+                  SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
+                }
+              }
           }
-//          ForEach(0..<3) { _ in
-//            GridRow {
-//              ForEach(0..<3) { _ in
-//                SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
-//              }
-//            }
-//          }
+        }
+        GridRow {
+          ForEach(squareVars.gameBoardData.boardData.indices, id: \.self) { index in
+            if index > 2 && index < 6 {
+              ForEach(0..<1) { _ in
+                SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
+              }
+              
+            }
+          }
+        }
+        GridRow {
+          ForEach(squareVars.gameBoardData.boardData.indices, id: \.self) { index in
+            if index > 5 {
+              ForEach(0..<1) { _ in
+                SquareTileView(squareIndex: $squareVars.gameBoardData.boardData[index].id)
+              }
+              
+            }
+          }
         }
       }
       Button("Reset Game", action: squareVars.resetGame)
