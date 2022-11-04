@@ -13,7 +13,7 @@ struct SquareTileView: View {
   
     var body: some View {
       Button(action: {
-        toogleSquareStatus()
+        squareVars.toogleSquareStatus(squareIndex: squareIndex)
       }, label: {
         Text(squareVars.gameBoardData.boardData[squareIndex].squareStatus == "playerOne" ? "X" : squareVars.gameBoardData.boardData[squareIndex].squareStatus == "playerTwo" ? "O" : " ")
           .font(.largeTitle)
@@ -25,28 +25,6 @@ struct SquareTileView: View {
           .cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
       })
     }
-  
-  func toogleSquareStatus() {
-    // if number of turns > 3 then need to check for winner
-    switch squareVars.gameBoardData.boardData[squareIndex].squareStatus {
-    case "playerOne":
-      squareVars.data.currentPlayersTurn = "playerOne"
-    case "playerTwo":
-      squareVars.data.currentPlayersTurn = "playerOne"
-    case "empty":
-      if (squareVars.data.currentPlayersTurn == "playerOne") {
-        squareVars.gameBoardData.boardData[squareIndex].squareStatus = "playerOne"
-        squareVars.data.currentPlayersTurn = "playerTwo"
-      } else {
-        squareVars.gameBoardData.boardData[squareIndex].squareStatus = "playerTwo"
-        squareVars.data.currentPlayersTurn = "playerOne"
-      }
-    default:
-      squareVars.gameBoardData.boardData[squareIndex].squareStatus = "empty"
-    }
-    
-    squareVars.data.numberOfTurns! += 1
-  }
 }
 
 
