@@ -5,10 +5,6 @@
 //  Created by Jason Wise on 10/30/22.
 //
 
-// This view needs to do:
-// 1. render a square
-// 2. toogle X, O, or empty in that square
-
 import SwiftUI
 
 struct SquareTileView: View {
@@ -19,8 +15,7 @@ struct SquareTileView: View {
       Button(action: {
         toogleSquareStatus()
       }, label: {
-//        Text(squareVars.data.squareStatus == "playerOne" ? "X" : squareVars.data.squareStatus == "playerTwo" ? "O" : " ")
-        Text("\(squareVars.gameBoardData.boardData[squareIndex].id)")
+        Text(squareVars.gameBoardData.boardData[squareIndex].squareStatus == "playerOne" ? "X" : squareVars.gameBoardData.boardData[squareIndex].squareStatus == "playerTwo" ? "O" : " ")
           .font(.largeTitle)
           .bold()
           .foregroundColor(.black)
@@ -32,24 +27,25 @@ struct SquareTileView: View {
     }
   
   func toogleSquareStatus() {
-    switch squareVars.data.squareStatus {
+    // if number of turns > 3 then need to check for winner
+    switch squareVars.gameBoardData.boardData[squareIndex].squareStatus {
     case "playerOne":
-      squareVars.data.squareStatus = "playerTwo"
       squareVars.data.currentPlayersTurn = "playerOne"
     case "playerTwo":
-      squareVars.data.squareStatus = "playerOne"
-      squareVars.data.currentPlayersTurn = "playerTwo"
+      squareVars.data.currentPlayersTurn = "playerOne"
     case "empty":
-      print("empty case")
       if (squareVars.data.currentPlayersTurn == "playerOne") {
-        squareVars.data.squareStatus = squareVars.data.currentPlayersTurn
+        squareVars.gameBoardData.boardData[squareIndex].squareStatus = "playerOne"
         squareVars.data.currentPlayersTurn = "playerTwo"
       } else {
-        squareVars.data.squareStatus = "playerTwo"
+        squareVars.gameBoardData.boardData[squareIndex].squareStatus = "playerTwo"
+        squareVars.data.currentPlayersTurn = "playerOne"
       }
     default:
-      squareVars.data.squareStatus = "empty"
+      squareVars.gameBoardData.boardData[squareIndex].squareStatus = "empty"
     }
+    
+    squareVars.data.numberOfTurns! += 1
   }
 }
 

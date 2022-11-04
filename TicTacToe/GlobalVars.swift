@@ -11,6 +11,7 @@ struct GameData : Hashable {
   var id: Int
   var currentPlayersTurn: String
   var squareStatus: String
+  var numberOfTurns: Int?
 }
 
 struct BoardData: Hashable {
@@ -18,10 +19,7 @@ struct BoardData: Hashable {
 }
 
 class GlobalVars: ObservableObject {
-  @Published var squareStatus: String = "empty"
-  @Published var currentPlayersTurn: String = "playerOne"
-  
-  @Published var data: GameData = GameData(id: 1, currentPlayersTurn: "playerOne", squareStatus: "empty")
+  @Published var data: GameData = GameData(id: 1, currentPlayersTurn: "playerOne", squareStatus: "empty", numberOfTurns: 0)
   @Published var gameBoardData: BoardData = BoardData(boardData: [])
   
   init() {
@@ -29,6 +27,7 @@ class GlobalVars: ObservableObject {
   }
   
   func resetGame() {
+    // this needs to be fixed
     data.squareStatus = "empty"
     data.currentPlayersTurn = "playerOne"
   }
@@ -37,8 +36,5 @@ class GlobalVars: ObservableObject {
     for i in stride(from: 0, to: 9, by: 1) {
       gameBoardData.boardData.append(GameData(id: i, currentPlayersTurn: "playerOne", squareStatus: "empty"))
     }
-    
-    print(gameBoardData.boardData)
-        
   }
 }
