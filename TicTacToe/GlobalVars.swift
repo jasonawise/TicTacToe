@@ -14,6 +14,8 @@ struct GameData : Hashable {
   var numberOfTurns: Int?
   var playerOneChoosenSquares: [Int]?
   var playerTwoChoosenSquares: [Int]?
+  var winner: String?
+  var gameOver: Bool?
 }
 
 struct BoardData: Hashable {
@@ -27,7 +29,9 @@ class GlobalVars: ObservableObject {
     squareStatus: "empty",
     numberOfTurns: 0,
     playerOneChoosenSquares: [],
-    playerTwoChoosenSquares: []
+    playerTwoChoosenSquares: [],
+    winner: "",
+    gameOver: false
   )
   
   @Published var gameBoardData: BoardData = BoardData(boardData: [])
@@ -49,22 +53,40 @@ class GlobalVars: ObservableObject {
   }
   
   func checkForWinner() {
-    if (data.numberOfTurns! > 3) {
-      // lets check for a winner
-     
+    let winConditions = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6]
+    ]
+    
+      for winCondition in winConditions {
+        if winCondition.elementsEqual(data.playerOneChoosenSquares!) || winCondition.elementsEqual(data.playerTwoChoosenSquares!) {
+          // set our winnder
+          data.winner = data.currentPlayersTurn
+          data.gameOver = true
+        }
+      }
     }
-  }
   
   func toogleSquareStatus(squareIndex: Int) {
-    // if number of turns > 3 then need to check for winner
-    self.checkForWinner()
-    switch gameBoardData.boardData[squareIndex].squareStatus {
-    case "playerOne":
-      data.currentPlayersTurn = "playerOne"
-    case "playerTwo":
-      data.currentPlayersTurn = "playerOne"
-      data.playerTwoChoosenSquares?.append(squareIndex)
-    case "empty":
+
+    if gameBoardData.boardData[squareIndex].squareStatus == "Empty" {
+      switch gameBoardData.boardData[squareIndex].squareStatus {
+      case "playerOne":
+        data.currentPlayersTurn = "playerOne"
+      case "playerTwo":
+        data.currentPlayersTurn = "playerOne"
+        data.playerTwoChoosenSquares?.append(squareIndex)
+      default:
+        gameBoardData.boardData[squareIndex].squareStatus = "empty"
+      }
+    } else {
+      // this logic here needs to be cleaned up some, can still change square after its been selected
       if (data.currentPlayersTurn == "playerOne") {
         gameBoardData.boardData[squareIndex].squareStatus = "playerOne"
         data.playerOneChoosenSquares?.append(squareIndex)
@@ -74,10 +96,13 @@ class GlobalVars: ObservableObject {
         data.playerTwoChoosenSquares?.append(squareIndex)
         data.currentPlayersTurn = "playerOne"
       }
-    default:
-      gameBoardData.boardData[squareIndex].squareStatus = "empty"
     }
-    
+   
     data.numberOfTurns! += 1
+    
+    // if number of turns > 3 then need to check for winner
+    if data.numberOfTurns! > 3 {
+      self.checkForWinner()
+    }
   }
 }
