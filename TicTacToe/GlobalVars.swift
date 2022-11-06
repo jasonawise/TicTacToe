@@ -41,9 +41,9 @@ class GlobalVars: ObservableObject {
   }
   
   func resetGame() {
-    // this needs to be fixed
-    data.squareStatus = "empty"
+    gameBoardData.boardData.removeAll()
     data.currentPlayersTurn = "playerOne"
+    self.createBoard()
   }
   
   func createBoard() {
