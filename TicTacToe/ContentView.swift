@@ -50,15 +50,15 @@ struct ContentView: View {
           Text("Current Players Turn: ")
         }
       }
-      HStack {
-        if squareVars.data.gameOver! {
-          Section {
-            Text(squareVars.data.winner!)
-          } header: {
-            Text("We Have a Winner and they are: ")
-          }
-        }
-      }
+//      HStack {
+//        if squareVars.data.gameOver! {
+//          Section {
+//            Text(squareVars.data.winner!)
+//          } header: {
+//            Text("We Have a Winner and they are: ")
+//          }
+//        }
+//      }
     }
     .padding()
   }

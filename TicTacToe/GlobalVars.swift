@@ -74,27 +74,19 @@ class GlobalVars: ObservableObject {
     }
   
   func toogleSquareStatus(squareIndex: Int) {
-
-    if gameBoardData.boardData[squareIndex].squareStatus == "Empty" {
-      switch gameBoardData.boardData[squareIndex].squareStatus {
+    
+    if gameBoardData.boardData[squareIndex].squareStatus == "empty" {
+      switch data.currentPlayersTurn {
       case "playerOne":
-        data.currentPlayersTurn = "playerOne"
-      case "playerTwo":
-        data.currentPlayersTurn = "playerOne"
-        data.playerTwoChoosenSquares?.append(squareIndex)
-      default:
-        gameBoardData.boardData[squareIndex].squareStatus = "empty"
-      }
-    } else {
-      // this logic here needs to be cleaned up some, can still change square after its been selected
-      if (data.currentPlayersTurn == "playerOne") {
         gameBoardData.boardData[squareIndex].squareStatus = "playerOne"
         data.playerOneChoosenSquares?.append(squareIndex)
         data.currentPlayersTurn = "playerTwo"
-      } else {
+      case "playerTwo":
         gameBoardData.boardData[squareIndex].squareStatus = "playerTwo"
         data.playerTwoChoosenSquares?.append(squareIndex)
         data.currentPlayersTurn = "playerOne"
+      default:
+        gameBoardData.boardData[squareIndex].squareStatus = "empty"
       }
     }
    
