@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CE8BD70291B22DF002BE920 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8BD6F291B22DF002BE920 /* SettingsView.swift */; };
 		2CF7166B290F0DFB002F3061 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7166A290F0DFB002F3061 /* TicTacToeApp.swift */; };
 		2CF7166D290F0DFB002F3061 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7166C290F0DFB002F3061 /* ContentView.swift */; };
 		2CF7166F290F0DFD002F3061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF7166E290F0DFD002F3061 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CE8BD6F291B22DF002BE920 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2CF71667290F0DFB002F3061 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF7166A290F0DFB002F3061 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
 		2CF7166C290F0DFB002F3061 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CE8BD6E291B22CC002BE920 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2CE8BD6F291B22DF002BE920 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		2CF7165E290F0DFB002F3061 = {
 			isa = PBXGroup;
 			children = (
@@ -55,6 +65,7 @@
 		2CF71669290F0DFB002F3061 /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				2CE8BD6E291B22CC002BE920 /* Settings */,
 				2CF7166A290F0DFB002F3061 /* TicTacToeApp.swift */,
 				2CF7166C290F0DFB002F3061 /* ContentView.swift */,
 				2CF7166E290F0DFD002F3061 /* Assets.xcassets */,
@@ -143,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE8BD70291B22DF002BE920 /* SettingsView.swift in Sources */,
 				2CF7167B290F1EAF002F3061 /* GlobalVars.swift in Sources */,
 				2CF7166D290F0DFB002F3061 /* ContentView.swift in Sources */,
 				2CF71679290F0E32002F3061 /* SquareTileView.swift in Sources */,

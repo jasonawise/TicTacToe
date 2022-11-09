@@ -9,8 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var squareVars: GlobalVars
+  @State private var showingSheet = false
+  
   var body: some View {
     VStack {
+      Button {
+        showingSheet.toggle()
+      } label: {
+        Image(systemName: "gear")
+          .imageScale(.large)
+      }
+      .sheet(isPresented: $showingSheet) {
+        SettingsView()
+      }
+   
       Grid() {
           GridRow {
             ForEach(squareVars.gameBoardData.boardData.indices, id: \.self) { index in
@@ -42,6 +54,7 @@ struct ContentView: View {
           }
         }
       }
+      
       Button("Reset Game", action: squareVars.resetGame)
       HStack {
         Section {
@@ -62,7 +75,6 @@ struct ContentView: View {
     }
     .padding()
   }
-  
 }
 
 struct ContentView_Previews: PreviewProvider {
